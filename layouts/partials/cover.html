@@ -13,7 +13,11 @@
         {{- if (and (in $processableFormats $cover.MediaType.SubType) (ne .Site.Params.cover.responsiveImages false) (eq $prod true)) }}
         <img srcset="{{- range $size := $sizes -}}
                         {{- if (ge $cover.Width $size) -}}
-                        {{ printf "%s %s" (($cover.Resize (printf "%sx" $size)).Permalink) (printf "%sw ," $size) -}}
+                            {{- if not $.IsHome }}
+                                {{ printf "%s %s" (($cover.Resize (printf "%sx" $size)).Permalink) (printf "%sw ," $size) -}}
+                            {{- else }}
+                                {{ printf "%s %s" (($cover.Fill (printf "%sx360" $size)).Permalink) (printf "%sw ," $size) -}}
+                            {{ end }}
                         {{ end }}
                     {{- end -}}{{$cover.Permalink }} {{printf "%dw" ($cover.Width)}}"
             sizes="(min-width: 768px) 720px, 100vw" src="{{ $cover.Permalink }}" alt="{{ $alt }}" />
