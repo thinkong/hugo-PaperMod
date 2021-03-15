@@ -16,7 +16,7 @@
                             {{- if not $.IsHome }}
                                 {{ printf "%s %s" (($cover.Resize (printf "%sx" $size)).Permalink) (printf "%sw ," $size) -}}
                             {{- else }}
-                                {{ printf "%s %s" (($cover.Fill (printf "%sx360" $size)).Permalink) (printf "%sw ," $size) -}}
+                                {{ printf "%s %s" (($cover.Fill (printf "%sx300" $size)).Permalink) (printf "%sw ," $size) -}}
                             {{ end }}
                         {{ end }}
                     {{- end -}}{{$cover.Permalink }} {{printf "%dw" ($cover.Width)}}"
