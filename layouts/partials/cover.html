@@ -33,11 +33,9 @@
         {{- if (and (in $processableFormats $cover.MediaType.SubType) ($responsiveImages) (eq $prod true)) }}
             <img loading="{{$loading}}"
                 srcset='{{- range $size := $sizes -}}
-                            {{- if (ge $cover.Width $size) }}
-                                {{- printf "%s %s" (($cover.Resize (printf "%sx" $size)).Permalink) (printf "%sw," $size) }}
-                            {{- end }}
+                                {{- printf "%s %s" (($cover.Fill (printf "%sx300" $size)).Permalink) (printf "%sw," $size) }}
                         {{- end }}
-                        {{- printf "%s %dw" ($cover.Permalink) ($cover.Width) }}'
+                        {{- printf "%s %s" (($cover.Fill (printf "%dx300" $cover.Width)).Permalink) (printf "%dw," $cover.Width) }}'
                 src="{{ $cover.Permalink }}"
                 sizes="(min-width: 768px) 720px, 100vw"
                 width="{{ $cover.Width }}" height="{{ $cover.Height }}"
